@@ -13,7 +13,7 @@ router.use(bodyParser.json());
 /* GET users listing. */
 router.route('/')
 .options(cors.corsWithOptions, (req, res) => { res.sendStatus(200); })
-  .get(cors.cors, authenticate.verifyUser, authenticate.verifyAdmin, function (req, res, next) {
+  .get(cors.corsWithOptions, authenticate.verifyUser, authenticate.verifyAdmin, function (req, res, next) {
     if (req.user.admin) {
       Users.find({})
         .then((users) => {
